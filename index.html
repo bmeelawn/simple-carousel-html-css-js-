@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* .slider {
+            width: 100%;
+            height: 100%;
+        } */
+        .slider-list {
+            /* width: 100%; */
+            width: 60%;
+            height: 500px;
+            margin-inline: auto;
+            margin-top: 1.3rem;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slide-item {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transition: 1s;
+        }
+
+        .slide-btns {
+            margin: auto;
+            text-align: center;
+            margin-top: 1.3rem;
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div class="slider">
+        <div class="slider-list">
+            <div class="slide-item">
+                <img src="https://picsum.photos/1000/500?random=1" alt="">
+            </div>
+            <div class="slide-item">
+                <img src="https://picsum.photos/1000/500?random=2" alt="">
+            </div>
+            <div class="slide-item">
+                <img src="https://picsum.photos/1000/500?random=3" alt="">
+            </div>
+            <div class="slide-item">
+                <img src="https://picsum.photos/1000/500?random=4" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="slide-btns">
+        <button onclick="PrevSlide()">Prev</button>
+        <button onclick="NextSlide()">Next</button>
+    </div>
+
+    <script>
+        let slideItems = document.querySelectorAll('.slide-item');
+        let count = 0;
+        slideItems.forEach((item, index) => {
+            item.style.left = `${index * 100}%`
+        })
+
+        function PrevSlide() {
+            if (count == 0) {
+                count = slideItems.length - 1;
+                slide();
+            } else {
+                count--;
+                slide();
+            }
+        }
+        function NextSlide() {
+            count++;
+            if (count === slideItems.length) count = 0;
+            slide();
+        }
+
+        const slide = () => {
+
+            slideItems.forEach((item, index) => {
+                item.style.transform = `translateX(-${count * 100}%)`
+            })
+        }
+
+    </script>
+
+</body>
+
+</html>
